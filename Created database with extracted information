@@ -1,0 +1,215 @@
+
+drop database  nba_stats;
+create database NBA_Stats;
+
+use NBA_Stats;
+
+create table if not exists Teams
+(
+Ranking int,
+Name varchar(15) primary key not null,
+Conference varchar(4) not null,
+Division varchar(10) not null
+);
+
+create table Points
+(
+name varchar(15),
+PPG decimal(13,1), 
+oPPG decimal(13,1),
+pDIFF decimal(12,1),
+
+constraint fk_Points
+	foreign key (name)
+	references Teams (name)
+);
+
+create table if not exists Efficiency
+(
+name varchar(15),
+oEFF decimal(13,1),
+dEFF decimal(13,1),
+eDIFF decimal(12,1),
+
+constraint fk_Efficiency
+	foreign key (name)
+	references Teams (name)
+);
+
+create table if not exists Results
+(
+name varchar(15), 
+Wins int not null,
+Losses int not null,
+Win_Percentage decimal(13,3) not null,
+Expected_Win_Percentage decimal(13,3) not null,
+Projected_Win_Percentage decimal(13,3) not null,
+
+constraint fk_Results
+	foreign key (name)
+	references Teams (name)
+);
+
+insert into Teams
+values
+(1, 'Indiana','East','Central'),
+(2, 'Boston','East','Atlantic'),
+(3, 'Oklahoma City','West','Northwest'),
+(4, 'Milwaukee','East','Central'),
+(5, 'Atlanta','East','Southeast'),
+(6, 'LA Lakers','West','Pacific'),
+(7, 'Dallas','West','Southwest'),
+(8, 'Golden State','West','Pacific'),
+(9, 'Sacramento','West','Pacific'),
+(10, 'Phoenix','West','Pacific'),
+(11, 'Utah','West','Northwest'),
+(12, 'LA Clippers','West','Pacific'),
+(13, 'New Orleans','West','Southwest'),
+(14, 'Denver','West','Northwest'),
+(15,'Philadelphia','East','Atlantic'),
+(16,'Houston',	'West',	'Southwest'),
+(17,'Washington','East','Southeast'),
+(18,'Minnesota','West','Northwest'),
+(19,'New York','East','Atlantic'),
+(20,'Cleveland','East','Central'),
+(21,'Toronto','East','Atlantic'),
+(22,'Chicago','East','Central'),
+(23,'San Antonio','West','Southwest'),
+(24,'Orlando','East','Southeast'),
+(25,'Brooklyn','East','Atlantic'),
+(26,'Miami','East','Southeast'),
+(27,'Detroit','East','Central'),
+(28,'Charlotte','East','Southeast'),
+(29,'Portland','West','Northwest'),
+(30,'Memphis','West','Southwest');
+
+insert into Points 
+values
+('Indiana',123.3, 120.2, 3.1),
+('Boston', 120.6, 109.2, 11.4),
+('Oklahoma City', 120.1, 112.7, 7.4),
+('Milwaukee', 119, 116.4, 2.6),
+('Atlanta',	118.3, 120.5, -2.2),
+('LA Lakers', 118, 117.4, 0.6),
+('Dallas', 117.9, 115.6,2.3),
+('Golden State',117.8,115.2,2.6),
+('Sacramento',116.6,114.8,1.8),
+('Phoenix',	116.2,113.2,3),
+('Utah', 115.7,120.5,-4.8),
+('LA Clippers',115.6,112.3,3.3),
+('New Orleans',115.1,110.7,4.4),
+('Denver',114.9,109.6,5.3),
+('Philadelphia',	114.6,	111.5,	3.1),
+('Houston',	114.3,	113.2,	1.1),
+('Washington',	113.7,	123,	-9.3),
+('Minnesota',	113,	106.5,	6.5),
+('New York',	112.8,	108.2,	4.6),
+('Cleveland',	112.6,	110.2,	2.4),
+('Toronto',	112.4,	118.8,	-6.4),
+('Chicago',	112.3,	113.7,	-1.4),
+('San Antonio',	112.1,	118.6,	-6.5),
+('Orlando',	110.5,	108.4,	2.1),
+('Brooklyn',	110.4,	113.3,	-2.9),
+('Miami',	110.1,	108.4,	1.7),
+('Detroit',	109.9,	119, -9.1),
+('Charlotte',	106.6,	116.8,	-10.2),
+('Portland',	106.4,	115.4,	-9),
+('Memphis',	105.8,	112.8,	-7);
+
+insert into Efficiency values
+('Indiana',	121.1,	118.1,	3),
+('Boston',	123.2,	111.6,	11.6),
+('Oklahoma City',	119.6,	112.2,	7.4),
+('Milwaukee',	118.4,	115.8,	2.6),
+('Atlanta',	117.3,	119.4,	-2.1),
+('LA Lakers',	116,	115.4,	0.6),
+('Dallas',	117.7,	115.5,	2.2),
+('Golden State',	117.9,	115.2,	2.7),
+('Sacramento',	117,	115.2,	1.8),
+('Phoenix',	117.7,	114.6,	3.1),	
+('Utah',	115.6,	120.5,	-4.9),
+('LA Clippers',	118.8,	115.4,	3.4),
+('New Orleans',	117.4,	112.9,	4.5),
+('Denver',	118.5,	113.1,	5.4),
+('Philadelphia',	117,	113.8,	3.2),
+('Houston',	114.6,	113.5,	1.1),
+('Washington',	110.5,	119.6,	-9.1),
+('Minnesota',	115.6,	109,	6.6),
+('New York',	118.2,	113.4,	4.8),
+('Cleveland',	115.2,	112.8,	2.4),
+('Toronto',	112.4,	118.8,	-6.4),
+('Chicago',	114.9,	116.3,	-1.4),
+('San Antonio',	110,	116.4,	-6.4),
+('Orlando',	113.4,	111.3,	2.1),
+('Brooklyn',	113.2,	116.1,	-2.9),
+('Miami',	114.1,	112.3,	1.8),
+('Detroit',	109.7,	118.8,	-9.1),
+('Charlotte',	109.3,	119.8,	-10.5),
+('Portland',	108.3,	117.5,	-9.2),
+('Memphis',	107.2,	114.3,	-7.1);
+
+insert into Results values
+('Indiana',	47,	35,	0.573,	0.578,	0.602),
+('Boston',	64,	18,	0.780,	0.768,	0.875),
+('Oklahoma City',	57,	25,	0.695,	0.667,	0.744),
+('Milwaukee',	49,	33,	0.598,	0.564,	0.586),
+('Atlanta',	36,	46,	0.439,	0.443,	0.428),
+('LA Lakers',	47,	35,	0.573,	0.516,	0.52),
+('Dallas',	50,	32,	0.610,	0.549,	0.576),
+('Golden State',	46,	36,	0.561,	0.578,	0.586),
+('Sacramento',	46,	36,	0.561,	0.544,	0.559),
+('Phoenix',	49,	33,	0.598,	0.598,	0.599),
+('Utah',	31,	51,	0.378,	0.379,	0.342),
+('LA Clippers',	51,	31,	0.622,	0.594,	0.609),
+('New Orleans',	49,	33,	0.598,	0.604,	0.645),
+('Denver',	57,	25,	0.695,	0.651,	0.675),
+('Philadelphia',	47,	35,	0.573,	0.579,	0.602),
+('Houston',	41,	41,	0.500,	0.53,	0.536),
+('Washington',	15,	67,	0.183,	0.234,	0.194),
+('Minnesota',	56,	26,	0.683,	0.684,	0.714),
+('New York',	50,	32,	0.610,	0.619,	0.651),
+('Cleveland',	48,	34,	0.585,	0.562,	0.579),
+('Toronto',	25,	57,	0.305,	0.342,	0.289),
+('Chicago',	39,	43,	0.476,	0.458,	0.454),
+('San Antonio',	22,	60,	0.268,	0.329,	0.286),
+('Orlando',	47,	35,	0.573,	0.556,	0.569),
+('Brooklyn',	32,	50,	0.390,	0.428,	0.405),
+('Miami',	46,	36,	0.561,	0.547,	0.556),
+('Detroit',	14,	68,	0.171,	0.224,	0.2),
+('Charlotte',	21,	61,	0.256,	0.233,	0.164),
+('Portland',	21,	61,	0.256,	0.278,	0.204),
+('Memphis',	27,	55,	0.329,	0.306,	0.27);
+
+use NBA_Stats;
+
+select round(PPG) as Points_Per_Game, p.name as Team_Name, upper(t.conference),
+left(t.division, 5)
+from points p join teams t;
+
+select name, dEFF 
+from Efficiency
+order by dEFF asc
+limit 7;
+
+(select t.name, win_percentage, conference, rank()
+over(order by win_percentage desc)
+from results r join teams t on r.name =t.name 
+where t.conference = 'east'
+limit 5
+)
+union
+(select t.name, win_percentage, t.conference, rank()
+over(order by win_percentage desc, name)
+from results r join teams t on r.name =t.name
+where t.conference = 'west' 
+order by win_percentage desc
+limit 5
+);
+
+select name, wins, expected_win_percentage
+from results
+where wins < 30 
+order by expected_win_percentage desc
+limit 5;
+
+
