@@ -1,0 +1,245 @@
+drop database  Toy_store;
+create database Toy_store;
+
+use Toy_store;
+
+create table if not exists Product
+(
+SKU int  primary key,
+Toy_brand varchar(20), 
+Product_name varchar(50)
+);
+
+create table if not exists Inventory
+(
+SKU int primary key, 
+Units_in_storage int,
+Dollar_value_of_units int,
+Units_in_transit int,
+Arrival_date date 
+);
+
+create table if not exists Sales 
+(
+SKU int primary key,
+Units_sold int,
+Unit_profits int
+);
+
+insert into Product
+values
+(123456,'Lego','Millennium Falcon'),
+(123457,'Fisher-Price','Rock-a-Stack'),
+(123458,'Nerf','Ultra Pharaoh'),
+(123459,'Disney','Princess Castle'),
+(123460,'Melissa & Doug','Deluxe Pounding Bench'),
+(123461,'Barbie','Fashionistas'),
+(370383,'Vtech','Smart Shots Sports Center'),
+(370384,'Crayola','Inspiration Art'),
+(370385,'Fisher-Price','Laugh & Learn'),
+(370386,'Nerf','Rival Nemesis'),
+(370387,'Disney','Toy Story Figures'),
+(370388,'Melissa & Doug','Shape Sorting Cube'),
+(370389,'Hasbro','Battleship'),
+(370390,'Play-Doh','Kitchen Creations Ultimate Barbecue'),
+(740780,'Nerf','Elite Dart Blaster'),
+(740781,'Disney','Frozen II Dolls'),
+(740782,'Melissa & Doug','Abacus'),
+(740783,'Hasbro','Operation'),
+(740784,'Barbie','Dream Horse'),
+(740785,'Vtech','Sort & Discover Activity Cube'),
+(740786,'Hot Wheels','Colossal Crash'),
+(740787,'LEGO','Marvel Super Heroes'),
+(740788,'Melissa & Doug','Wooden Blocks'),
+(740789,'Hasbro','Monopoly'),
+(740790,'Barbie','Dream Camper'),
+(740791,'Vtech','Baby Laptop'),
+(740792,'Play-Doh','Ice Cream Castle'),
+(740793,'LEGO','City Central Airport'),
+(740794,'Crayola','Model Magic'),
+(740795,'Hasbro','Transformers'),
+(740796,'Barbie','Dream Carriage'),
+(740797,'Vtech','Alphabet Train'),
+(740798,'Play-Doh','Burger Barbecue'),
+(740799,'Hot Wheels','Loop & Launch'),
+(740800,'Fisher-Price','Baby Bouncer'),
+(740801,'Vtech','Smart Shots Sports'),
+(740802,'Barbie','Dreamhouse'),
+(740803,'Play-Doh','Sparkle Compound'),
+(740804,'Hot Wheels','City Playset'),
+(740805,'LEGO','Super Mario Set'),
+(740806,'Crayola','Marker Maker'),
+(740807,'Nerf','Doomlands'),
+(740808,'Disney','Princess Carriage'),
+(740809,'Play-Doh','Kitchen Creations'),
+(740810,'Hot Wheels','Monster Trucks'),
+(740811,'LEGO','Star Wars Set'),
+(740812,'Crayola','Colored Pencils'),
+(740813,'Fisher-Price','Soothe & Glow Seahorse'),
+(740814,'Melissa & Doug','Slice and Bake Cookie Set'),
+(740815,'Hot Wheels','Track Builder Set'),
+(740816,'LEGO','Harry Potter Set'),
+(740817,'Crayola','Washable Markers'),
+(740818,'Fisher-Price','Baby First Blocks'),
+(740819,'Nerf','Zombie Strike'),
+(740820,'Disney','Mickey Mouse Clubhouse'),
+(740821,'Hasbro','Mr. Potato Head');
+ 
+ insert into Sales
+ values
+(123456,25,500),
+(123457,10,50),
+(123458,15,300),
+(123459,30,300),
+(123460,15,225),
+(123461,10,200),
+(370383,25,250),
+(370384,35,175),
+(370385,10,150),
+(370386,20,400),
+(370387,30,300),
+(370388,15,225),
+(370389,25,250),
+(370390,20,100),
+(740780,40,400),
+(740781,30,450),
+(740782,15,225),
+(740783,0,0),
+(740784,10,200),
+(740785,25,250),
+(740786,30,150),
+(740787,20,300),
+(740788,15,300),
+(740789,0,0),
+(740790,10,200),
+(740791,25,250),
+(740792,20,100),
+(740793,20,300),
+(740794,40,200),
+(740795,0,0),
+(740796,15,300),
+(740797,25,250),
+(740798,20,100),
+(740799,30,150),
+(740800,10,50),
+(740801,20,200),
+(740802,15,750),
+(740803,20,100),
+(740804,30,150),
+(740805,0,0),
+(740806,40,200),
+(740807,15,300),
+(740808,30,300),
+(740809,25,125),
+(740810,0,0),
+(740811,0,0),
+(740812,40,200),
+(740813,0,0),
+(740814,15,225),
+(740815,0,0),
+(740816,0,0),
+(740817,40,200),
+(740818,10,50),
+(740819,15,300),
+(740820,30,300),
+(740821,25,250);
+
+insert into Inventory
+values
+(123456,75,1500,20,'2024-05-05'),
+(123457,15,75,3,'2024-07-05'),
+(123458,0,400,8,'2024-10-05'),
+(123459,0,350,5,'2024-08-05'),
+(123460,20,300,5,'2024-08-05'),
+(123461,15,300,6,'2024-11-05'),
+(370383,0,300,4,'2024-09-05'),
+(370384,50,250,6,'2024-11-05'),
+(370385,25,375,2,'2024-06-05'),
+(370386,0,500,8,'2024-10-05'),
+(370387,0,350,5,'2024-08-05'),
+(370388,0,300,5,'2024-08-05'),
+(370389,30,300,4,'2024-09-05'),
+(370390,25,125,7,'2024-12-05'),
+(740780,60,600,5,'2024-08-05'),
+(740781,0,600,5,'2024-08-05'),
+(740782,0,300,5,'2024-08-05'),
+(740783,30,300,0,NULL),
+(740784,15,300,6,'2024-11-05'),
+(740785,0,300,4,'2024-09-05'),
+(740786,40,200,2,'2024-06-05'),
+(740787,25,375,3,'2024-07-05'),
+(740788,0,400,4,'2024-09-05'),
+(740789,30,300,0,NULL),
+(740790,15,300,6,'2024-11-05'),
+(740791,0,300,4,'2024-09-05'),
+(740792,25,125,7,'2024-12-05'),
+(740793,25,375,3,'2024-07-05'),
+(740794,50,250,6,'2024-11-05'),
+(740795,0,1500,0,NULL),
+(740796,20,400,6,'2024-11-05'),
+(740797,0,300,4,'2024-09-05'),
+(740798,25,125,7,'2024-12-05'),
+(740799,40,200,2,'2024-06-05'),
+(740800,15,75,3,'2024-07-05'),
+(740801,0,300,4,'2024-09-05'),
+(740802,30,1500,10,'2024-01-05'),
+(740803,25,125,7,'2024-12-05'),
+(740804,0,200,0,NULL),
+(740805,25,375,0,NULL),
+(740806,50,250,6,'2024-11-05'),
+(740807,0,400,8,'2024-10-05'),
+(740808,0,350,5,'2024-08-05'),
+(740809,35,175,7,'2024-12-05'),
+(740810,40,200,0,NULL),
+(740811,25,375,0,NULL),
+(740812,50,250,6,'2024-11-05'),
+(740813,15,75,0,NULL),
+(740814,20,300,5,'2024-08-05'),
+(740815,40,200,0,NULL),
+(740816,30,450,0,NULL),
+(740817,50,250,6,'2024-11-05'),
+(740818,15,75,3,'2024-07-05'),
+(740819,0,400,8,'2024-10-05'),
+(740820,0,350,5,'2024-08-05'),
+(740821,30,300,4,'2024-09-05');
+
+use toy_store;
+
+/*#1*/
+select sum(units_sold) as Total_units, sum(unit_profits) as Total_profit, toy_brand 
+from sales s 
+join product p on s.SKU = p.SKU 
+group by toy_brand;
+
+
+/*#2*/
+select product_name, 
+(unit_profits - dollar_value_of_units) as profit_margin,
+rank() over(order by unit_profits - dollar_value_of_units)
+from product p 
+join inventory i on p.SKU = i.SKU
+join sales s on p.SKU = s.SKU;
+
+/*#3*/
+select product_name, (units_sold / units_in_storage)
+from inventory i 
+join sales s on i.SKU = s.SKU
+join product p on p.SKU = i.SKU
+where units_in_storage >0
+order by (units_sold / units_in_storage) asc;
+
+/*#4*/
+select
+p.product_name, units_sold, Units_In_Transit
+from Product p
+join Sales s ON p.SKU = s.SKU
+join inventory i on i.SKU = p.SKU
+WHERE s.Units_Sold > 0 AND p.SKU 
+NOT IN (SELECT SKU FROM Inventory WHERE Units_In_Transit > 0);
+
+/*#5*/
+select product_name, units_sold, units_in_storage
+from product p
+join sales s on p.sku = s.sku
+join inventory i on p.sku = i.sku
+where units_sold = 0 and units_in_storage > 0;
